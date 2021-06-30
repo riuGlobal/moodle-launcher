@@ -1,0 +1,4 @@
+.env
+moodledata-data
+mariadb-data
+bitnami-moodle

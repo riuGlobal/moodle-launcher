@@ -1,0 +1,30 @@
+version: '3'
+services:
+  mariadb:
+    image: mariadb:10
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+    volumes:
+      - ${PWD}/mariadb-data:/var/lib/mysql
+  moodle:
+    container_name: moodle
+    image: 'docker.io/bitnami/moodle:3-debian-10'
+    environment:
+      - MOODLE_DATABASE_HOST
+      - MOODLE_DATABASE_PORT_NUMBER
+      - MOODLE_DATABASE_USER
+      - MOODLE_DATABASE_PASSWORD
+      - MOODLE_DATABASE_NAME
+      - MOODLE_USERNAME
+      - MOODLE_PASSWORD
+      - MOODLE_SITE_NAME
+
+    volumes:
+      - '${PWD}/bitnami-moodle:/bitnami/moodle'
+      - '${PWD}/moodledata-data:/bitnami/moodledata'
+    depends_on:
+      - mariadb
+

@@ -1,4 +1,6 @@
 version: '3'
 services:
+  mariadb:
+    restart: unless-stopped
   moodle:
     restart: unless-stopped
